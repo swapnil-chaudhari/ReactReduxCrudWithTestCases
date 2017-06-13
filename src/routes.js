@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Router, Route } from 'react-router';
-import Category from './components/category/category';
+import Category from 'src/components/category/category';
 
-export default (
+const Routes = ({ history }) => (
     <Router history={ history }>
         <Route>
             <Route
@@ -16,4 +16,10 @@ export default (
         </Route>
     </Router>
 );
+
+Routes.propTypes = {
+    history: PropTypes.object
+};
+
+export default Routes;
 

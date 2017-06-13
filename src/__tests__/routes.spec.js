@@ -9,7 +9,7 @@ describe('<Routes>', () => {
     context('rendering', () => {
         let component;
         before(() => {
-            component = renderShallow(<Routes history={ browserHistory } />);
+            component = renderShallow(<Routes history={ browserHistory } />).output;
         });
 
         it('renders a <Router>', () => {
@@ -21,9 +21,13 @@ describe('<Routes>', () => {
         });
 
         it('renders the default index route', () => {
+            console.log(component);
             expect(component).to.include(
-                <Route path="/" />
-            );
+                <Route
+                    path="/"
+                    component={ Category }
+                />
+             );
         });
 
         it('renders the /category route', () => {

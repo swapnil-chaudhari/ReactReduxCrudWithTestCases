@@ -6,7 +6,7 @@ import Routes from 'src/routes';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { renderShallow } from 'lib/test-helpers';
 import { expect } from 'chai';
-import App from '../app';
+import App from 'src/app';
 
 describe('<App>', () => {
     describe('render routes', () => {
@@ -19,10 +19,11 @@ describe('<App>', () => {
                 history = syncHistoryWithStore(browserHistory, store);
             });
 
-            it('renders a list of routes', () => {
+            it.only('renders a list of routes', () => {
+	         console.log(component);
                 expect(component).to.eql(
                     <Provider store={ store }>
-                        <Routes history={ history } />
+                        <Routes history={ browserHistory } />
                     </Provider>
                 );
             });

@@ -7,9 +7,6 @@ const SideBar = () =>
                 <a href="#"><i className="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
             <li>
-                <a href="posts"><i className="fa fa-fw fa-table"></i> Posts</a>
-            </li>
-            <li>
                 <a href="categories"><i className="fa fa-fw fa-table"></i> Categories</a>
             </li>
         </ul>
