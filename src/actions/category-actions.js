@@ -13,14 +13,6 @@ import {
 
 export const categoryApi = 'http://react.schaudhari.mr.devorch.com/category.php';
 
-export const fetchError = () =>
-	dispatch =>
-        dispatch({ type: FETCH_CATEGORIES_ERROR, payload: [] });
-
-export const fetchCompleted = () =>
-    dispatch =>
-        dispatch({ type: FETCH_CATEGORIES_COMPLETED });
-
 const fetchCategories = () =>
     dispatch =>
         axios.get(`${categoryApi}`)

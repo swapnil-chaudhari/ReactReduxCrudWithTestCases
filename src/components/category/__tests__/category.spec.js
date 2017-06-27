@@ -12,7 +12,7 @@ describe('<Category>', () => {
         before(() => {
             component = renderShallow(<Category />).output;
         });
-
+        
         it('returns Category', () => {
             expect(component).to.eql(
                 <div id="wrapper">

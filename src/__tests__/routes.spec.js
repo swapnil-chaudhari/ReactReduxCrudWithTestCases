@@ -21,23 +21,23 @@ describe('<Routes>', () => {
         });
 
         it('renders the default index route', () => {
-            console.log(component);
-            expect(component).to.include(
-                <Route
-                    path="/"
-                    component={ Category }
-                />
+            expect(component).to.eql(
+                <Router history={ browserHistory }>
+                    <Route>
+                        <Route
+                            path="/"
+                            component={ Category }
+                        />
+                        <Route
+                            path="/categories"
+                            component={ Category }
+                        />
+                    </Route>
+                </Router>
              );
         });
 
-        it('renders the /category route', () => {
-            expect(component).to.include(
-                <Route
-                    path="/categories"
-                    component={ Category }
-                />
-            );
-        });
+        
     });
 
 });

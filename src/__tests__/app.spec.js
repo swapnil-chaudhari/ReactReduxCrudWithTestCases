@@ -19,7 +19,7 @@ describe('<App>', () => {
                 history = syncHistoryWithStore(browserHistory, store);
             });
 
-            it.only('renders a list of routes', () => {
+            it('renders a list of routes', () => {
 	         console.log(component);
                 expect(component).to.eql(
                     <Provider store={ store }>
