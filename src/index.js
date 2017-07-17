@@ -55,6 +55,7 @@ exports.renderApplication = (appRootDomElement) => {
             <App />
         </IntlProvider>,
         appRootDomElement);
+        // document.getElementById('main'));
 };
 
 

@@ -72,7 +72,6 @@ class Content extends Component {
         const pages = Math.ceil(categories.length / perPage);
         const startOffset = (page - 1) * perPage;
         let startCount = 0;
-
         return (
             <div id="page-wrapper" className="page-flower">
                 <div className="container-fluid">

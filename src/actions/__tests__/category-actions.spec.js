@@ -10,38 +10,60 @@ import {
     DELETE_CATEGORY_COMPLETED,
     DELETE_CATEGORY_ERROR,
 } from 'src/action-types';
-import fetchCategories from 'src/actions/category-actions';
+import fetchCategories, { saveCategory, editCategory } from 'src/actions/category-actions';
 import sinon, { spy, stub } from 'sinon';
 import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter'
 
 describe('category actions', () => {
-    describe('fetchCategories', () => {
-        context('when it is called', () => {
+    describe('fetchCategory', () => {
+        context('when fetchCategory is called', () => {
+            it.only('fetches categories', () =>  {
+                let get = stub(axios, 'get');
+                get.yields();
+                let dispatch = spy();
+                fetchCategories(dispatch);
+                expect(dispatch).to.have.been.calledOnce;
+                expect(axios.get).to.be.calledOnce;
+                get.restore();
+            });
+        });
+    });
+
+    describe('saveCategory', () => {
+        context('when saveCategory is called', () => {
+            it('saves category', () =>  {
+                let message = { success: 'Category is added succesfully.' };
+                let post = stub(axios, 'post');
+                post.yields();
+                let dispatch = spy();
+                const category = {
+                    name: "test category", description: "this is test category." 
+                };
+                saveCategory(category, dispatch);
+                expect(dispatch).to.have.been.calledOnce;
+                expect(axios.post).to.be.calledOnce;
+                // expect(dispatch).to.have.been.calledWith({
+                //     type: SAVE_CATEGORY_COMPLETED, payload: message
+                // });
+                post.restore();
+            });
+        });
+    });
+
+    describe('editCategory', () => {
+        context('when editCategory is called', () => {
+            let id = 1;
             const dispatch = spy();
-            const category = {
-                id: '1',
-                name: 'title',
-                description: 'description',
-            }
             before((done) => {
-                fetchCategories()(dispatch);
+                editCategory(id)(dispatch);
                 done();
             });
-            it(`dispatches ${FETCH_CATEGORIES_COMPLETED} and fetches categories`, () => {
-                axios.get('http://react.schaudhari.mr.devorch.com/category.php')
-                .then((res) => {
-                    expect(dispatch).to.have.been.calledWith({
-                        type: FETCH_CATEGORIES_COMPLETED,
-                        category
-                    });
-                })
-                .catch((err) => {
-                    expect(dispatch).to.have.been.calledWith({
-                        type: FETCH_CATEGORIES_ERROR,
-                        category
-                    });
+            
+            it('dispatches editCategory', () => {
+                expect(dispatch).to.have.been.calledWith({
+                    type: EDIT_CATEGORY_STARTED, payload: id
                 });
-                    
             });
         });
     });

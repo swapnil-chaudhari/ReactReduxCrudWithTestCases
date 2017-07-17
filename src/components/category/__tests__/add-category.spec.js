@@ -34,8 +34,7 @@ describe('<AddCategory>', () => {
             // expect(modal.props.onRequestHide).to.eql(props.onHideModal);
         });
 
-        it.only('displays a modal heading with a title and close button', () => {
-            console.log(modal);
+        it('displays a modal heading with a title and close button', () => {
             expect(component).to.include(
                 <ModalHeader>
                     <ModalClose onClick={ props.onHideModal } />

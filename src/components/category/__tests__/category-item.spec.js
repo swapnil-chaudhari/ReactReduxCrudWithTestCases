@@ -23,7 +23,7 @@ describe('<CategoryItem>', () => {
             component = renderShallow(<CategoryItem { ...props } />).output;
         });
         it('renders the content section', () => {
-            console.log(component);
+            // console.log(component);
             // console.log(modal.props.onRequestHide);
             expect(component.props.onEdit).to.be.empty();
             expect(component.props.onDelete).to.be.empty();

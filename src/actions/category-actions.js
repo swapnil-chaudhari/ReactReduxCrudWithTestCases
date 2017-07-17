@@ -20,6 +20,7 @@ const fetchCategories = () =>
             dispatch({ type: FETCH_CATEGORIES_COMPLETED, payload: response.data });
         })
         .catch((err) => {
+            console.log(err);
             dispatch({ type: FETCH_CATEGORIES_ERROR, payload: err });
         });
 
