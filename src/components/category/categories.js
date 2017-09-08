@@ -39,9 +39,9 @@ const Categories = ({
     };
 
     return (
-        <div className="categories">
+        <div className="categoriesDiv">
             <table className="table table-bordered table-hover">
-                <thead>
+                <thead className="theadClass">
                     <tr>
                         <th>
                             <a href="#" >Id</a>
@@ -58,7 +58,7 @@ const Categories = ({
                     </tr>
                 </thead>
                 <tbody>
-                    { categoryListItems() }
+                    {/*{ categoryListItems() }*/}
                 </tbody>
             </table>
         </div>

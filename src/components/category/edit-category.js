@@ -14,7 +14,7 @@ class EditCategory extends Component {
         onUpdateCategory: PropTypes.func,
         isOpen: PropTypes.bool,
         category: PropTypes.object,
-        message: PropTypes.object,
+        // message: PropTypes.object,
         errorClass: PropTypes.string
     };
 

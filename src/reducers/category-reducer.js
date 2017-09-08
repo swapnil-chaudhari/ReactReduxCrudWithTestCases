@@ -34,7 +34,7 @@ export default function reducer(state = {
             return { ...state };
         }
         case FETCH_CATEGORIES_ERROR: {
-            return { ...state, message: { success: '', fail: action.payload.results } };
+            return { ...state, message: { success: '', fail: action.payload } };
         }
         case FETCH_CATEGORIES_COMPLETED: {
             let success = state.message.success;
@@ -49,7 +49,7 @@ export default function reducer(state = {
         }
         case DELETE_CATEGORY_COMPLETED: {
             return { ...state, isCRUD: true, isAlertVisible: true,
-                    message: { success: action.payload.results, fail: '' } };
+                    message: { success: action.payload, fail: '' } };
         }
         case OPEN_MODAL: {
             return { ...state, message: { success: '', fail: '' }, errorClass: '', isOpen: true,
@@ -66,7 +66,7 @@ export default function reducer(state = {
         }
         case SAVE_CATEGORY_COMPLETED: {
             return { ...state, isOpen: false, modalAction: '', isCRUD: true, isAlertVisible: true,
-                    message: { success: action.payload.results, fail: '' } };
+                    message: { success: action.payload, fail: '' } };
         }
         case SAVE_CATEGORY_ERROR: {
             return { ...state, errorClass: 'alert alert-danger',
@@ -83,7 +83,7 @@ export default function reducer(state = {
         }
         case UPDATE_CATEGORY_COMPLETED: {
             return { ...state, isOpen: false, modalAction: '', isCRUD: true, isAlertVisible: true,
-                    message: { success: action.payload.results, fail: '' } };
+                    message: { success: action.payload, fail: '' } };
         }
         case UPDATE_CATEGORY_ERROR: {
             return { ...state, errorClass: 'alert alert-danger',
