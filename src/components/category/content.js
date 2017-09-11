@@ -68,6 +68,7 @@ class Content extends Component {
     render() {
         // pagination
         const { categories, page } = this.props;
+        
         const perPage = 5;
         const pages = Math.ceil(categories.length / perPage);
         const startOffset = (page - 1) * perPage;

@@ -13,7 +13,6 @@ import {
 import fetchCategories, { saveCategory, editCategory, updateCategory, deleteCategory } from 'src/actions/category-actions';
 import sinon, { spy, stub } from 'sinon';
 import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter'
 
 describe('categories action creators', () => {
     const categoryApi = 'http://react.schaudhari.mr.devorch.com/category.php';

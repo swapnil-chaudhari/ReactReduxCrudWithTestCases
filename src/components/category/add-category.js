@@ -50,13 +50,13 @@ class AddCategory extends Component {
         }
         return (
             <div className="container App">
-              <Modal isOpen={this.props.isOpen} onRequestHide={this.handleHideModal.bind(this)}>
+              <Modal isOpen={this.props.isOpen} onRequestHide={ this.props.onHideModal }>
                     <ModalHeader>
-                      <ModalClose onClick={this.handleHideModal.bind(this)}/>
+                      <ModalClose onClick={ this.props.onHideModal }/>
                       <ModalTitle>Add Category</ModalTitle>
                     </ModalHeader>
                     <ModalBody>
-                        <div className={this.props.errorClass}>
+                        <div className={ this.props.errorClass }>
                             {errors}
                         </div>
                         <form role="form">
@@ -72,7 +72,7 @@ class AddCategory extends Component {
                         </form>
                     </ModalBody>
                     <ModalFooter>
-                      <button className='btn btn-default' onClick={this.handleHideModal.bind(this)}>
+                      <button className='btn btn-default' onClick={ this.props.onHideModal }>
                         Close
                       </button>
                       <input type='button' onClick={this.handleSaveCategory.bind(this)} className='btn btn-primary' value='Save' />

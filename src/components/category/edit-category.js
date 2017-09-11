@@ -7,6 +7,7 @@ import {
         ModalBody,
         ModalFooter
     } from 'react-modal-bootstrap';
+import noop from 'src/utils/noop';
 
 class EditCategory extends Component {
     static propTypes = {
@@ -14,7 +15,7 @@ class EditCategory extends Component {
         onUpdateCategory: PropTypes.func,
         isOpen: PropTypes.bool,
         category: PropTypes.object,
-        // message: PropTypes.object,
+        message: PropTypes.object,
         errorClass: PropTypes.string
     };
 
@@ -26,7 +27,7 @@ class EditCategory extends Component {
     }
 
     handleHideModal = () => {
-        this.props.onHideModal(this.props.isOpen);
+        // this.props.onHideModal(this.props.isOpen);
     }
 
     handleUpdateCategory = () => {
@@ -47,9 +48,9 @@ class EditCategory extends Component {
 
         return (
             <div className="container App">
-                <Modal isOpen={ this.props.isOpen } onRequestHide={ this.handleHideModal }>
+                <Modal isOpen={ this.props.isOpen } onRequestHide={ this.props.onHideModal }>
                     <ModalHeader>
-                        <ModalClose onClick={ this.handleHideModal } />
+                        <ModalClose onClick={ this.props.onHideModal } />
                         <ModalTitle>Edit Category</ModalTitle>
                     </ModalHeader>
                     <ModalBody>
@@ -79,7 +80,7 @@ class EditCategory extends Component {
                         </form>
                     </ModalBody>
                     <ModalFooter>
-                        <button className="btn btn-default" onClick={ this.handleHideModal }>
+                        <button className="btn btn-default" onClick={ this.props.onHideModal }>
                             Close
                         </button>
                         <input

@@ -58,7 +58,7 @@ const Categories = ({
                     </tr>
                 </thead>
                 <tbody>
-                    {/*{ categoryListItems() }*/}
+                    { categoryListItems() }
                 </tbody>
             </table>
         </div>

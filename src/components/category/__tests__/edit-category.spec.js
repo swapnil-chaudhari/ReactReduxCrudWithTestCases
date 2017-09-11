@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import React from 'react';
 import EditCategory from '../edit-category';
 import renderShallow from 'render-shallow';
+// import { renderShallow } from 'lib/test-helpers';
 import {
     Modal,
     ModalHeader,
@@ -13,12 +14,17 @@ import {
 import noop from 'src/utils/noop';
 import { findWithType, findWithClass } from 'react-shallow-testutils';
 
-describe('<EditCategory>', () => {
+describe.only('<EditCategory>', () => {
 
     context('when it renders', () => {
         let component;
         let modal;
         let modalHeader;
+        let modalClose;
+        let modalBody;
+        let modalFooter;
+        let div;
+        let form;
         const props = {
             onHideModal: noop,
             onUpdateCategory: noop,
@@ -39,19 +45,25 @@ describe('<EditCategory>', () => {
         };
 
         before(() => {
-            component = renderShallow(<EditCategory { ...props } />).output;
-            modal = findWithType(component, Modal);
-            modalHeader = findWithType(modal, ModalHeader);
+            component= renderShallow(<EditCategory { ...props } />).output;
+            // div= findWithClass(component, 'alert-danger');
+            // form= findWithType(component, 'form');
         });
 
-        it('renders div container', () => {
-            const div = findWithClass(component, 'container');
-            expect(div.type).to.equal('div');
+        it('checks Modal Callback', () => {
+            modal= findWithType(component, Modal);
+            expect((modal.props.onRequestHide)).to.eql(props.onHideModal);
+            expect(modal.props.isOpen).to.be.eql(props.isOpen);
         });
 
-        it.only('render ModalHeader', () => {
-            console.log(modalHeader);
-            expect(modalHeader).to.equal(
+        it('checks ModalHeader Callback', () => {
+            modalClose= findWithType(component, ModalClose);
+            expect((modalClose.props.onClick)).to.eql(props.onHideModal);
+        });
+
+        it('checks ModalHeader body', () => {
+            modalHeader= findWithType(component, ModalHeader);
+            expect(modalHeader).to.eql(
                 <ModalHeader>
                     <ModalClose onClick={ props.onHideModal } />
                     <ModalTitle>Edit Category</ModalTitle>
@@ -59,23 +71,68 @@ describe('<EditCategory>', () => {
             );
         });
 
-        it('renders modal wrapper', () => {
-            expect(modal.props.isOpen).to.be.true();
-            expect(modal.props.onRequestHide).to.be.a('function');
-            expect(modal.props.children[0].type).to.equal(ModalHeader)
-            expect(modal.props.children[1].type).to.equal(ModalBody)
-            expect(modal.props.children[2].type).to.equal(ModalFooter)
+        it('checks ModalBody', () => {
+            modalBody= findWithType(component, ModalBody);
+            expect(modalBody).to.eql(
+                <ModalBody>
+                    <div className={ props.errorClass }>
+                        <li key='0'>{ props.message.fail.title }</li>
+                        <li key='1'>{ props.message.fail.description }</li>
+                    </div>
+                    <form role="form">
+                        <div className="form-group">
+                            <label>Title</label>
+                            <input
+                                ref="title"
+                                defaultValue={ props.category.name }
+                                className="form-control"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Description</label>
+                            <textarea
+                                ref="description"
+                                defaultValue={ props.category.description }
+                                className="form-control"
+                                rows="3"
+                            >
+                            </textarea>
+                        </div>
+                    </form>
+                </ModalBody>
+            );
         });
 
-        it('displays a modal with header, body and footer', () => {
-
-            let numberOfElementsInModal = modal.props.children.length;
-            expect(numberOfElementsInModal).to.equal(3);
+        it('checks ModalFooter Callback', () => {
+            const closeButton= findWithClass(component, 'btn-default');
+            const updateButton= findWithClass(component, 'btn-primary');
+            const editCategory = {
+                title: 'edited category',
+                description: 'edited description'
+            }
+            console.log(handleUpdateCategory);
+            // console.log(updateButton.props.onClick);
+            // console.log(props.onUpdateCategory);
+            expect(closeButton.props.onClick).to.eql(props.onHideModal);
+            expect(updateButton.props.onClick).to.eql(noop);
         });
 
-        it('displays a modal heading with a title and close button', () => {
-            let numberOfElementsInModalHeader = component.props.children.props.children[0].props.children.length;
-            expect(numberOfElementsInModalHeader).to.equal(2);
+        it('checks ModalFooter body', () => {
+            modalFooter= findWithType(component, ModalFooter);
+            expect(modalFooter).to.eql(
+                <ModalFooter>
+                    <button className="btn btn-default" onClick={ noop }>
+                        Close
+                    </button>
+                    <input
+                        type="button"
+                        onClick={ noop }
+                        className="btn btn-primary"
+                        value="Update"
+                    />
+                </ModalFooter>
+            );
         });
     });
 });
