@@ -111,9 +111,6 @@ describe.only('<EditCategory>', () => {
                 title: 'edited category',
                 description: 'edited description'
             }
-            console.log(handleUpdateCategory);
-            // console.log(updateButton.props.onClick);
-            // console.log(props.onUpdateCategory);
             expect(closeButton.props.onClick).to.eql(props.onHideModal);
             expect(updateButton.props.onClick).to.eql(noop);
         });
