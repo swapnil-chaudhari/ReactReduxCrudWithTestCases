@@ -31,12 +31,12 @@ class EditCategory extends Component {
     }
 
     handleUpdateCategory = () => {
-        this.setState({ editedCategory: {
-            title: this.refs.title.value,
-            description: this.refs.description.value,
-        } }, () => {
-            this.props.onUpdateCategory(this.state.editedCategory, this.props.category.id);
-        });
+        // this.setState({ editedCategory: {
+        //     title: this.refs.title.value,
+        //     description: this.refs.description.value,
+        // } }, () => {
+        //     this.props.onUpdateCategory(this.state.editedCategory, this.props.category.id);
+        // });
     }
 
     render() {
@@ -85,7 +85,7 @@ class EditCategory extends Component {
                         </button>
                         <input
                             type="button"
-                            onClick={ this.handleUpdateCategory }
+                            onClick={ this.props.onUpdateCategory(this.state.editCategory, 1) }
                             className="btn btn-primary"
                             value="Update"
                         />
