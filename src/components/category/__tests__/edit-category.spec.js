@@ -15,7 +15,7 @@ import {
 import noop from 'src/utils/noop';
 import { findWithType, findWithClass } from 'react-shallow-testutils';
 
-describe.only('<EditCategory>', () => {
+describe('<EditCategory>', () => {
     context('when it renders', () => {
         let component;
         let modal;

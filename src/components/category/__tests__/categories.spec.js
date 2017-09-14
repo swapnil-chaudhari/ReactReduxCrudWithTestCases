@@ -22,6 +22,7 @@ describe('<Categories>', () => {
                 description: 'my-category-description2',
             },
         ];
+
         const props = {
             onDelete: noop,
             onEdit: noop,
@@ -30,6 +31,7 @@ describe('<Categories>', () => {
             perPage: 10,
             categories: categories,
         };
+
         before(() => {
             component = renderShallow(<Categories { ...props } />).output;
         });
@@ -61,6 +63,6 @@ describe('<Categories>', () => {
                 </thead>
             );
         });
-        
+
     });
 });

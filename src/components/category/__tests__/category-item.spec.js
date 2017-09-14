@@ -10,6 +10,8 @@ describe('<CategoryItem>', () => {
     context('when it renders', () => {
         let component;
         let tr;
+        let editLink;
+        let deleteLink;
         let category = {
             id: '1',
             name: 'my-category-title',
@@ -23,6 +25,13 @@ describe('<CategoryItem>', () => {
         before(() => {
             component = renderShallow(<CategoryItem { ...props } />).output;
             tr = findWithType(component, 'tr');
+            editLink = findWithClass(component, 'btn-danger');
+            deleteLink = findWithClass(component, 'btn-danger');
+        });
+
+        it.only('checks anchor tag callback', () => {
+            console.log(editLink.props.onClick);
+            expect(editLink.props.onClick).to.eql({ noop });
         });
 
         it('renders <tr> with all <td>s', () => {
@@ -41,6 +50,6 @@ describe('<CategoryItem>', () => {
             expect(findWithClass(component, 'btn-warning').props.children).to.eql('EDIT');
             expect(findWithClass(component, 'btn-danger').props.children).to.eql('DELETE');
         });
-        
+
     });
 });

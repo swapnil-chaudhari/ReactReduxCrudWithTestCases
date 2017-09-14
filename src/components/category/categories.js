@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import CategoryItem from './category-item';
 
 const Categories = ({
-                        categories,
-                        onDelete,
-                        onEdit,
-                        startOffset,
-                        startCount,
-                        perPage
-                    }) => {
+    categories,
+    onDelete,
+    onEdit,
+    startOffset,
+    startCount,
+    perPage
+}) => {
     const deleteCategory = (id) => {
         onDelete(id);
     };

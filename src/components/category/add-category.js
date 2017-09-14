@@ -15,7 +15,7 @@ class AddCategory extends Component {
         onSaveCategory: PropTypes.func,
         errorClass: PropTypes.string,
         isOpen: PropTypes.bool,
-        // message: PropTypes.object,
+        message: PropTypes.object,
     };
 
     constructor(props) {

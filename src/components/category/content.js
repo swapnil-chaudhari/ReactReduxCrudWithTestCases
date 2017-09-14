@@ -68,7 +68,7 @@ class Content extends Component {
     render() {
         // pagination
         const { categories, page } = this.props;
-        
+        console.log('swapnil');
         const perPage = 5;
         const pages = Math.ceil(categories.length / perPage);
         const startOffset = (page - 1) * perPage;
