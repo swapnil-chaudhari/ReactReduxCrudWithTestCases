@@ -27,7 +27,7 @@ class EditCategory extends Component {
     }
 
     handleHideModal = () => {
-        // this.props.onHideModal(this.props.isOpen);
+        this.props.onHideModal(this.props.isOpen);
     }
 
     handleUpdateCategory = () => {
@@ -80,7 +80,7 @@ class EditCategory extends Component {
                         </form>
                     </ModalBody>
                     <ModalFooter>
-                        <button className="btn btn-default" onClick={ this.props.onHideModal }>
+                        <button className="btn btn-default" onClick={ this.handleHideModal }>
                             Close
                         </button>
                         <input

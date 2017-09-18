@@ -12,6 +12,7 @@ import {
     ModalBody,
     ModalFooter
 } from 'react-modal-bootstrap';
+import * as categoryActions from 'src/actions/category-actions';
 import noop from 'src/utils/noop';
 import { findWithType, findWithClass } from 'react-shallow-testutils';
 
@@ -113,44 +114,10 @@ describe('<EditCategory>', () => {
             });
         });
 
-
-        context('when ModalFooter renders', () => {
-           const onHideModal = spy();
-           const props = {
-               onHideModal,
-               onUpdateCategory: noop,
-               errorClass: 'alert alert-danger',
-               isOpen: true,
-               category: {
-                   id: 1,
-                   name: 'test category',
-                   description: 'test description'
-               },
-               message: {
-                   success:'',
-                   fail: {
-                       title: 'Title field is required.',
-                       description: 'Description field is required.'
-                   }
-               }
-           };
-
-           before(() => {
-               component = renderShallow(<EditCategory { ...props } />, context).output;
-               const closeButton = findWithClass(component, 'btn-default');
-               return closeButton.props.onClick({ preventDefault: () => {} });
-           });
-
-           it('calls the given onHideModal function', () => {
-               expect(onHideModal).to.have.been.called();
-           });
-       });
-
-       context('when ModalFooter renders', () => {
-          const onUpdateCategory = spy();
+       context('when ModalFooter renders & checks hideModal is called.', () => {
           const props = {
-              onHideModal: noop,
-              onUpdateCategory,
+              onHideModal: spy(),
+              onUpdateCategory: spy(),
               errorClass: 'alert alert-danger',
               isOpen: true,
               category: {
@@ -168,14 +135,52 @@ describe('<EditCategory>', () => {
           };
 
           before(() => {
-              component = renderShallow(<EditCategory { ...props } />, context).output;
-              const updateButton = findWithClass(component, 'btn-primary');
-              return updateButton.props.onClick({ preventDefault: () => {} });
+              component = renderShallow(<EditCategory { ...props } />).output;
+              const hideButton = findWithClass(component, 'btn-default');
+              hideButton.props.onClick();
           });
 
-          it('calls the given onUpdateCategory function', () => {
-              expect(onUpdateCategory).to.have.been.called();
+          it('calls the given onClose function', () => {
+              expect(props.onHideModal).to.have.been.called();
           });
       });
+
+      context('when ModalFooter renders & checks updateCategory is called.', () => {
+         const props = {
+             onHideModal: spy(),
+             onUpdateCategory: spy(),
+             errorClass: 'alert alert-danger',
+             isOpen: true,
+             category: {
+                 id: 1,
+                 name: 'test category',
+                 description: 'test description'
+             },
+             message: {
+                 success:'',
+                 fail: {
+                     title: 'Title field is required.',
+                     description: 'Description field is required.'
+                 }
+             }
+         };
+
+         const editCategory = {
+             title: 'test title',
+             description: 'test description',
+         }
+
+         spy(categoryActions, 'updateCategory');
+
+         before(() => {
+             component = renderShallow(<EditCategory { ...props } />).output;
+             const updateCategoryButton = findWithClass(component, 'btn-primary');
+             updateCategoryButton.props.onClick(editCategory, props.category.id);
+         });
+
+         it('calls the given onUpdateCategory function', () => {
+             expect(props.onUpdateCategory).to.have.been.calledWith(editCategory, props.category.id);
+         });
+     });
   });
 });
