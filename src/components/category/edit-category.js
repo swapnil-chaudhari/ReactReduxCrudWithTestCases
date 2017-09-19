@@ -22,12 +22,13 @@ class EditCategory extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
-            description: '',
+            title: this.props.category.name,
+            description: this.props.category.description,
         };
     }
 
     handleFormInput = (e) => {
+        console.log('hey');
         this.setState({ [e.target.name]: e.target.value });
     }
 
