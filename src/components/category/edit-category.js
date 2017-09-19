@@ -22,8 +22,13 @@ class EditCategory extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            editedCategory: {},
+            title: '',
+            description: '',
         };
+    }
+
+    handleFormInput = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     handleHideModal = () => {
@@ -31,12 +36,11 @@ class EditCategory extends Component {
     }
 
     handleUpdateCategory = () => {
-        this.setState({ editedCategory: {
-            title: this.refs.title.value,
-            description: this.refs.description.value,
-        } }, () => {
-            this.props.onUpdateCategory(this.state.editedCategory, this.props.category.id);
-        });
+        const editedCategory = {
+            title: this.state.title,
+            description: this.state.description,
+        };
+        this.props.onUpdateCategory(editedCategory, this.props.category.id);
     }
 
     render() {
@@ -61,16 +65,18 @@ class EditCategory extends Component {
                             <div className="form-group">
                                 <label>Title</label>
                                 <input
-                                    ref="title"
-                                    defaultValue={ this.props.category.name }
-                                    className="form-control"
+                                    name = "title"
+                                    onChange = { this.handleFormInput }
+                                    defaultValue = { this.props.category.name }
+                                    className = "form-control"
                                 />
                             </div>
 
                             <div className="form-group">
                                 <label>Description</label>
                                 <textarea
-                                    ref="description"
+                                    name = "description"
+                                    onChange = { this.handleFormInput }
                                     defaultValue={ this.props.category.description }
                                     className="form-control"
                                     rows="3"

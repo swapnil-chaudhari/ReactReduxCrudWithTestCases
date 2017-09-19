@@ -145,7 +145,7 @@ describe('<EditCategory>', () => {
           });
       });
 
-      context('when ModalFooter renders & checks updateCategory is called.', () => {
+      context.only('when ModalFooter renders & checks updateCategory is called.', () => {
          const props = {
              onHideModal: spy(),
              onUpdateCategory: spy(),
