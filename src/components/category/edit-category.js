@@ -28,7 +28,6 @@ class EditCategory extends Component {
     }
 
     handleFormInput = (e) => {
-        console.log('hey');
         this.setState({ [e.target.name]: e.target.value });
     }
 

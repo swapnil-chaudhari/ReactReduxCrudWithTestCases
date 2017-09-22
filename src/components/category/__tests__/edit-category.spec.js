@@ -39,15 +39,21 @@ describe.only('<EditCategory>', () => {
 
     context('when ModalBody renders & checks onChange is called.', () => {
         let formInputElement;
+        let e = {
+            target: {
+                name: 'title',
+                value: 'test title'
+            }
+        }
         before(() => {
             component = renderShallow(<EditCategory { ...props } />).output;
+            // const handleFormInputSpy = spy(EditCategory.prototype, 'handleFormInput');
             formInputElement = findAllWithClass(component, 'form-control');
-            console.log(formInputElement[0]);
-            formInputElement[0].props.onChange();
+            formInputElement[0].props.onChange(e);
         });
 
-        it('calls the given onClose function', () => {
-            expect(formInputElement[0].props.onChange).to.have.been.called();
+        it('calls the given handleFormInputSpy function', () => {
+            expect(handleFormInputSpy).to.have.been.called();
         });
     });
 
