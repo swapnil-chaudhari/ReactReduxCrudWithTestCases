@@ -37,26 +37,6 @@ describe.only('<EditCategory>', () => {
         }
     };
 
-    context('when ModalBody renders & checks onChange is called.', () => {
-        let formInputElement;
-        let e = {
-            target: {
-                name: 'title',
-                value: 'test title'
-            }
-        }
-        before(() => {
-            component = renderShallow(<EditCategory { ...props } />).output;
-            // const handleFormInputSpy = spy(EditCategory.prototype, 'handleFormInput');
-            formInputElement = findAllWithClass(component, 'form-control');
-            formInputElement[0].props.onChange(e);
-        });
-
-        it('calls the given handleFormInputSpy function', () => {
-            expect(handleFormInputSpy).to.have.been.called();
-        });
-    });
-
     context('when ModalFooter renders & checks hideModal is called.', () => {
         before(() => {
             component = renderShallow(<EditCategory { ...props } />).output;
